@@ -12,15 +12,20 @@ import { CommonDeutschebahnRequestService } from './shared/service/common-deutsc
 import { FaStaService } from './shared/service/fa-sta.service';
 import { StaDaService } from './shared/service/sta-da.service';
 import { AuthService } from './shared/service/auth.service';
+import { WayService } from './shared/service/way.service';
 import { WaysOverviewComponent } from './ways-overview/ways-overview.component';
 import { WayDetailsComponent } from './way-details/way-details.component';
+import { HomeComponent } from './home/home.component';
+import { WayDetailsEditComponent } from './way-details-edit/way-details-edit.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     WaysOverviewComponent,
-    WayDetailsComponent
+    WayDetailsComponent,
+    HomeComponent,
+    WayDetailsEditComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +37,8 @@ import { WayDetailsComponent } from './way-details/way-details.component';
     FaStaService,
     StaDaService,
     AuthService,
-    httpInterceptorProviders
+    httpInterceptorProviders,
+    WayService
   ],
   bootstrap: [AppComponent]
 })

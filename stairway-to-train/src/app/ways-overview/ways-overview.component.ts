@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { WayService } from '../shared/service/way.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'stt-ways-overview',
@@ -7,9 +9,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WaysOverviewComponent implements OnInit {
 
-  constructor() { }
+  ways;
+
+  constructor(
+    private wayService:WayService,
+    private router:Router,
+    private route:ActivatedRoute
+  ) { }
 
   ngOnInit() {
+    this.ways = this.wayService.getWays();
+    this.wayService.getNewWayMessage().subscribe(way => {
+      this.router.navigate(['details', way.id, 'bearbeiten'], {relativeTo: this.route});
+    })
+  }
+
+  onClickNewButton(e) {
+    this.wayService.create();
   }
 
 }

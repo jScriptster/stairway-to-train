@@ -1,3 +1,11 @@
-<p>
-  ways-overview works!
-</p>
+<div>
+
+  <ul>
+    <li *ngFor="let way of ways">
+      <a [routerLink]="['details', way.id]">{{way.title}}</a>
+    </li>
+  </ul>
+
+  <button (click)="onClickNewButton($event)">Neue Route</button>
+
+</div>
