@@ -13,8 +13,4 @@ export class AppComponent {
 
   }
 
-  testButtonClickHandler(e) {
-    this.staDaService.find();
-  }
-
 }

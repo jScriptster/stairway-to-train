@@ -1,3 +1,12 @@
-<p>
-  way-details-edit works!
-</p>
+<h1>{{way.id}}</h1>
+
+<input [(ngModel)]="way.title">
+
+<button (click)="addStation()">Station hinzufügen</button>
+
+<a [routerLink]="['/meine-routen', 'details', way.id]">Fertig</a>
+
+<stt-station-search 
+  *ngIf="isStationSerach" 
+  (canceled)="onAddStationCanceled()"
+  (selected)="onStationSelected($event)"></stt-station-search>

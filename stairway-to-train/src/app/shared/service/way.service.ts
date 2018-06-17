@@ -10,7 +10,9 @@ export class WayService {
   private createCounter:number = 0;
   private newWaySubject = new Subject<Way>();
 
-  constructor() { }
+  constructor() {
+    this.create();
+  }
 
   create():void {
     let way = new Way(this.getNextId(), 'Neue Route');
@@ -29,6 +31,12 @@ export class WayService {
 
   getNewWayMessage(): Observable<Way> {
     return this.newWaySubject.asObservable();
+  }
+
+  getWayById(id):Way {
+    return this.ways.find(el => {
+      return el.id === id;
+    });
   }
 
 }

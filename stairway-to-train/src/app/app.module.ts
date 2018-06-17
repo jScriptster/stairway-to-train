@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 
@@ -17,6 +18,7 @@ import { WaysOverviewComponent } from './ways-overview/ways-overview.component';
 import { WayDetailsComponent } from './way-details/way-details.component';
 import { HomeComponent } from './home/home.component';
 import { WayDetailsEditComponent } from './way-details-edit/way-details-edit.component';
+import { StationSearchComponent } from './station-search/station-search.component';
 
 
 @NgModule({
@@ -25,12 +27,14 @@ import { WayDetailsEditComponent } from './way-details-edit/way-details-edit.com
     WaysOverviewComponent,
     WayDetailsComponent,
     HomeComponent,
-    WayDetailsEditComponent
+    WayDetailsEditComponent,
+    StationSearchComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [
     CommonDeutschebahnRequestService,

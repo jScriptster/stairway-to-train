@@ -12,7 +12,7 @@ export class CommonDeutschebahnRequestService {
     let httpParamsFromObject = new HttpParams({
       fromObject: params
     });
-    this.fetch('GET', resource, httpParamsFromObject);
+    return this.fetch('GET', resource, httpParamsFromObject);
   }
 
   private fetch(method, ressource, params) {
@@ -20,7 +20,7 @@ export class CommonDeutschebahnRequestService {
       params
     });
 
-    this.http.request(req).subscribe((data) => {console.log(data);});
+    return this.http.request(req);
   }
 
 }
