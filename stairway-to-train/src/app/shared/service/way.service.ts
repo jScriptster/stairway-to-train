@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Subject } from 'rxjs/Subject';
 import { Way } from '../model/way';
+import { Station } from '../model/station';
 
 @Injectable()
 export class WayService {
 
   private ways:Way[] = [];
   private createCounter:number = 0;
-  private newWaySubject = new Subject<Way>();
+  private newWaySubject:Subject<Way> = new Subject<Way>();
 
   constructor() {
     this.create();
@@ -36,6 +37,18 @@ export class WayService {
   getWayById(id):Way {
     return this.ways.find(el => {
       return el.id === id;
+    });
+  }
+
+  addStation(wayId:string, station:Station) {
+    const way = this.getWayById(wayId);
+    way.stations.push(station);
+  }
+
+  removeStation(wayId:string, station:Station) {
+    const way = this.getWayById(wayId);
+    way.stations = way.stations.filter(function(element) {
+      return element.id !== station.id;
     });
   }
 

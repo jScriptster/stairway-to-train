@@ -2,6 +2,12 @@
 
 <input [(ngModel)]="way.title">
 
+<stt-station 
+  *ngFor="let station of way.stations" 
+  [station]="station" 
+  [edit]="true"
+  (remove)="onRemoveStationClicked($event)"></stt-station>
+
 <button (click)="addStation()">Station hinzufügen</button>
 
 <a [routerLink]="['/meine-routen', 'details', way.id]">Fertig</a>

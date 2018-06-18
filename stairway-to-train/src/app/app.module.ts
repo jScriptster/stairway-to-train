@@ -19,6 +19,7 @@ import { WayDetailsComponent } from './way-details/way-details.component';
 import { HomeComponent } from './home/home.component';
 import { WayDetailsEditComponent } from './way-details-edit/way-details-edit.component';
 import { StationSearchComponent } from './station-search/station-search.component';
+import { StationComponent } from './station/station.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { StationSearchComponent } from './station-search/station-search.componen
     WayDetailsComponent,
     HomeComponent,
     WayDetailsEditComponent,
-    StationSearchComponent
+    StationSearchComponent,
+    StationComponent
   ],
   imports: [
     BrowserModule,

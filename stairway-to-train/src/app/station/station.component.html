@@ -1,0 +1,16 @@
+<div *ngIf="edit">
+  <strong>{{station.name}}</strong>
+  <button (click)="onRemoveClicked()">Entfernen</button>
+</div>
+
+
+<div *ngIf="!edit">
+  <strong>{{station.name}}</strong>
+  <button (click)="onRefreshClicked()">Refresh</button>
+
+  <div *ngFor="let facility of facilities">
+    {{facility.description}} ({{facility.type}}): {{facility.state}}
+  </div>
+
+
+</div>

@@ -32,9 +32,13 @@ export class WayDetailsEditComponent implements OnInit {
     this.isStationSerach = false;
   }
 
-  onStationSelected(selected:Station) {
-    console.log(selected);
+  onStationSelected(selectedStation:Station) {
+    this.wayService.addStation(this.way.id, selectedStation);
     this.isStationSerach = false;
+  }
+
+  onRemoveStationClicked(removedStation:Station) {
+    this.wayService.removeStation(this.way.id, removedStation);    
   }
 
 }
