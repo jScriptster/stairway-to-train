@@ -33,7 +33,10 @@ export class StaDaService {
       result.result.forEach(element => {
         stationList.push(new Station(
           element.number,
-          element.name
+          element.name,
+          element.federalState,
+          element.hasSteplessAccess,
+          element.hasWiFi
         ));
       });
     }

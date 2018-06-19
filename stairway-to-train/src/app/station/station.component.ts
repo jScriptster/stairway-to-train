@@ -25,12 +25,14 @@ export class StationComponent implements OnInit, OnDestroy {
     const facilitiesObservable = this.faStaService.getFacilitiesByStation(this.station.id);
     this.subscription = facilitiesObservable.subscribe((facilities:Facility[]) => {
       this.facilities = facilities;
-      console.log(this.facilities);
     });
+    
+    if (!this.edit) {
+      this.faStaService.fetch(this.station.id);
+    }
   }
 
   ngOnDestroy() {
-    console.log('destroy');
     this.subscription.unsubscribe();
   }
 
@@ -39,7 +41,7 @@ export class StationComponent implements OnInit, OnDestroy {
   }
 
   onRefreshClicked() {
-    this.faStaService.fetch(this.station.id);
+    this.faStaService.fetch(this.station.id, true);
   }
 
 }

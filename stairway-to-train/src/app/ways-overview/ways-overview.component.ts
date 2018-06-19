@@ -1,15 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { WayService } from '../shared/service/way.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Way } from '../shared/model/way';
+import { ISubscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'stt-ways-overview',
   templateUrl: './ways-overview.component.html',
   styleUrls: ['./ways-overview.component.scss']
 })
-export class WaysOverviewComponent implements OnInit {
+export class WaysOverviewComponent implements OnInit, OnDestroy {
 
-  ways;
+  private ways:Way[];
+  private subscription: ISubscription;
 
   constructor(
     private wayService:WayService,
@@ -19,9 +22,13 @@ export class WaysOverviewComponent implements OnInit {
 
   ngOnInit() {
     this.ways = this.wayService.getWays();
-    this.wayService.getNewWayMessage().subscribe(way => {
+    this.subscription = this.wayService.getNewWayMessage().subscribe(way => {
       this.router.navigate(['details', way.id, 'bearbeiten'], {relativeTo: this.route});
     })
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
   onClickNewButton(e) {
