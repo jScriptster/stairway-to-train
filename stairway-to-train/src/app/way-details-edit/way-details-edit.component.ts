@@ -1,30 +1,42 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Way } from '../shared/model/way';
 import { WayService } from '../shared/service/way.service';
 import { Station } from '../shared/model/station';
+import { ISubscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'stt-way-details-edit',
   templateUrl: './way-details-edit.component.html',
   styleUrls: ['./way-details-edit.component.scss']
 })
-export class WayDetailsEditComponent implements OnInit {
+export class WayDetailsEditComponent implements OnInit, OnDestroy {
 
-  way:Way;
-  isStationSerach:boolean = false;
+  private way:Way;
+  private isStationSerach:boolean = false;
+  private subscription: ISubscription;
   
   constructor(
-    private route:ActivatedRoute, 
+    private route:ActivatedRoute,
+    private router:Router,
     private wayService:WayService
   ) { }
 
   ngOnInit() {
     const wayId = this.route.snapshot.params['id'];
     this.way = this.wayService.getWayById(wayId);
+    this.subscription = this.wayService.getKillWayMessage().subscribe((killedWay:Way) => {
+      if (killedWay.id ===  wayId) {
+        this.router.navigate(['meine-routen']);
+      }
+    });
   }
 
-  addStation() {
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
+
+  onAddStationClicked() {
     this.isStationSerach = true;
   } 
 
@@ -39,6 +51,14 @@ export class WayDetailsEditComponent implements OnInit {
 
   onRemoveStationClicked(removedStation:Station) {
     this.wayService.removeStation(this.way.id, removedStation);    
+  }
+
+  onTitleChanged() {
+    this.wayService.save(this.way.id);
+  }
+
+  onKillWayClicked() {
+    this.wayService.kill(this.way.id);
   }
 
 }

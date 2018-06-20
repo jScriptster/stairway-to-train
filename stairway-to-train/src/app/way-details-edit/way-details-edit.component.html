@@ -1,6 +1,6 @@
 <h1>{{way.id}}</h1>
 
-<input [(ngModel)]="way.title">
+<input [(ngModel)]="way.title" (change)="onTitleChanged()">
 
 <stt-station 
   *ngFor="let station of way.stations" 
@@ -8,7 +8,9 @@
   [edit]="true"
   (remove)="onRemoveStationClicked($event)"></stt-station>
 
-<button (click)="addStation()">Station hinzufügen</button>
+<button (click)="onAddStationClicked()">Station hinzufügen</button>
+
+<button (click)="onKillWayClicked()">Route "{{way.title}}" löschen</button>
 
 <a [routerLink]="['/meine-routen', 'details', way.id]">Fertig</a>
 

@@ -3,8 +3,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
-import { AppComponent } from './app.component';
-
 import { httpInterceptorProviders } from './shared/http-interceptors';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -14,6 +12,9 @@ import { FaStaService } from './shared/service/fa-sta.service';
 import { StaDaService } from './shared/service/sta-da.service';
 import { AuthService } from './shared/service/auth.service';
 import { WayService } from './shared/service/way.service';
+import { PersistenceService } from './shared/service/persistence.service';
+
+import { AppComponent } from './app.component';
 import { WaysOverviewComponent } from './ways-overview/ways-overview.component';
 import { WayDetailsComponent } from './way-details/way-details.component';
 import { HomeComponent } from './home/home.component';
@@ -44,7 +45,8 @@ import { StationComponent } from './station/station.component';
     StaDaService,
     AuthService,
     httpInterceptorProviders,
-    WayService
+    WayService,
+    PersistenceService
   ],
   bootstrap: [AppComponent]
 })

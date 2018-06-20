@@ -24,7 +24,7 @@ export class WaysOverviewComponent implements OnInit, OnDestroy {
     this.ways = this.wayService.getWays();
     this.subscription = this.wayService.getNewWayMessage().subscribe(way => {
       this.router.navigate(['details', way.id, 'bearbeiten'], {relativeTo: this.route});
-    })
+    });
   }
 
   ngOnDestroy() {
