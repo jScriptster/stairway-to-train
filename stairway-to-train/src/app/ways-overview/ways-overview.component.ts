@@ -12,7 +12,8 @@ import { ISubscription } from 'rxjs/Subscription';
 export class WaysOverviewComponent implements OnInit, OnDestroy {
 
   private ways:Way[];
-  private subscription: ISubscription;
+  private readySubscription:ISubscription;
+  private subscription:ISubscription;
 
   constructor(
     private wayService:WayService,
@@ -21,14 +22,23 @@ export class WaysOverviewComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.ways = this.wayService.getWays();
-    this.subscription = this.wayService.getNewWayMessage().subscribe(way => {
-      this.router.navigate(['details', way.id, 'bearbeiten'], {relativeTo: this.route});
+    this.readySubscription = this.wayService.getReady().subscribe((isReady:boolean) => {
+      if (isReady) {
+        this.init();
+      }
     });
   }
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
+    this.readySubscription.unsubscribe();
+  }
+
+  init() {
+    this.ways = this.wayService.getWays();
+    this.subscription = this.wayService.getNewWayMessage().subscribe((way:Way) => {
+      this.router.navigate(['details', way.id, 'bearbeiten'], {relativeTo: this.route});
+    });
   }
 
   onClickNewButton(e) {

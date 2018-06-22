@@ -14,15 +14,24 @@ export class WayDetailsEditComponent implements OnInit, OnDestroy {
 
   private way:Way;
   private isStationSerach:boolean = false;
-  private subscription: ISubscription;
+  private readySubscription:ISubscription;
+  private subscription:ISubscription;
   
   constructor(
     private route:ActivatedRoute,
     private router:Router,
     private wayService:WayService
-  ) { }
+  ) {}
 
   ngOnInit() {
+    this.readySubscription = this.wayService.getReady().subscribe((isReady:boolean) => {
+      if (isReady) {
+        this.init();
+      }
+    });
+  }
+
+  init() {
     const wayId = this.route.snapshot.params['id'];
     this.way = this.wayService.getWayById(wayId);
     this.subscription = this.wayService.getKillWayMessage().subscribe((killedWay:Way) => {
@@ -34,6 +43,7 @@ export class WayDetailsEditComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
+    this.readySubscription.unsubscribe();
   }
 
   onAddStationClicked() {

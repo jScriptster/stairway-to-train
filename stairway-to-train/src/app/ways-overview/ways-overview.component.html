@@ -2,7 +2,7 @@
 
   <ul>
     <li *ngFor="let way of ways">
-      <a [routerLink]="['details', way.id]">{{way.title}}</a>
+      <a [routerLink]="['details', way.id]">{{way.title || 'unbenannt'}}</a>
     </li>
   </ul>
 

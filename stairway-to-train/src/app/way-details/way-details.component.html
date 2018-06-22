@@ -1,11 +1,13 @@
-<p>
-  {{way.id}} {{way.title}}
-</p>
+<div *ngIf="way">
+  <p>
+    {{way.id}} {{way.title}}
+  </p>
 
-<stt-station 
-  *ngFor="let station of way.stations" 
-  [station]="station" 
-  [edit]="false"></stt-station>
+  <stt-station 
+    *ngFor="let station of way.stations" 
+    [station]="station" 
+    [edit]="false"></stt-station>
 
-<a [routerLink]="['/meine-routen', 'details', way.id, 'bearbeiten']">Bearbeiten</a>
-<a [routerLink]="['/meine-routen']">Zur Übersicht</a>
+  <a [routerLink]="['/meine-routen', 'details', way.id, 'bearbeiten']">Bearbeiten</a>
+  <a [routerLink]="['/meine-routen']">Zur Übersicht</a>
+</div>
