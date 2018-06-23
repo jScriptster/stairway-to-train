@@ -4,7 +4,8 @@ export class Station {
         public name:string,
         public federalState:string,
         public hasSteplessAccess:boolean,
-        public hasWiFi:boolean
+        public hasWiFi:boolean,
+        public favorFacilities:string[] = []
     ) {}
 }
 

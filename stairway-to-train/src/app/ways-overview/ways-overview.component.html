@@ -1,11 +1,18 @@
 <div>
 
-  <ul>
-    <li *ngFor="let way of ways">
-      <a [routerLink]="['details', way.id]">{{way.title || 'unbenannt'}}</a>
+  <h1 class="main-headline">Meine Routen</h1>
+
+  <ul class="ways">
+    <li *ngFor="let way of ways" class="way">
+      <a [routerLink]="['details', way.id]">
+
+        <h5 class="way__title">{{way.title || 'unbenannt'}}</h5>
+        <span class="way__description">{{way.stations | stationPreview:2}}</span>
+
+      </a>
     </li>
   </ul>
 
-  <button (click)="onClickNewButton($event)">Neue Route</button>
+  <button class="button button--large" (click)="onClickNewButton($event)">Neue Route</button>
 
 </div>

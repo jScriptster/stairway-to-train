@@ -43,7 +43,7 @@ export class FaStaService {
   castFacilities(data:Array<Object>):Array<Facility> {
     const facilities:Array<Facility> = [];
     data.forEach((element:any) => {
-      facilities.push(new Facility(element.id, element.type, element.description, element.state));
+      facilities.push(new Facility(element.equipmentnumber, element.type, element.description, element.state));
     });
     return facilities;
   }

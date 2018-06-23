@@ -23,7 +23,7 @@ export class WayService {
       let subscription:ISubscription = fetchAllObservable.subscribe((result) => {
         subscription.unsubscribe();
         result['records'].forEach(record => {
-          let way = new Way(record.id, record.name, record.stations);
+          let way = new Way(record.id, record.title, record.stations);
           this.ways.push(way);
         });
         this.readySubject.next(true); 
@@ -99,6 +99,20 @@ export class WayService {
   save(wayId:string) {
     const way = this.getWayById(wayId);
     this.persistenceServcie.save(way);
+  }
+
+  toggleFacilityFavor(wayId, stationId, facilityId) {
+    const way:Way = this.getWayById(wayId);
+    const station:Station = way.stations.find((element) => {
+      return element.id === stationId;
+    });
+    const favorFacilityIndex = station.favorFacilities.indexOf(facilityId);
+    if (favorFacilityIndex > -1) {
+      station.favorFacilities.splice(favorFacilityIndex, 1);
+    } else {
+      station.favorFacilities.push(facilityId);
+    }
+    this.save(wayId);
   }
 
 }

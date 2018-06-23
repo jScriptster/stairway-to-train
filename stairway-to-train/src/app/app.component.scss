@@ -1,1 +1,11 @@
+@import '../style/colors';
 
+.main-wrapper {
+    width: 100%;
+    max-width: 550px;
+    margin: 0 auto;
+    padding: 0 10px;
+    border-left: 1px solid $color-darkest;
+    border-right: 1px solid $color-darkest;
+    min-height: 100vh;
+}

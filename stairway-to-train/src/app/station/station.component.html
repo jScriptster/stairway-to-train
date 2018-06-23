@@ -4,13 +4,45 @@
 </div>
 
 
-<div *ngIf="!edit">
-  <strong>{{station.name}}</strong>
-  <button (click)="onRefreshClicked()">Refresh</button>
-
-  <div *ngFor="let facility of facilities">
-    {{facility.description}} ({{facility.type}}): {{facility.state}}
+<div *ngIf="!edit" class="container">
+  
+  <div class="header" [ngClass]="facilities | facilityOutOfOrderAlarm:station.hasSteplessAccess:'header--ok':'header--alarm'">    
+    <span class="federal-state">{{station.federalState}}</span>
+    <strong class="station-name">{{station.name}}</strong>
+    <button class="refresh-button" (click)="onRefreshClicked()">Refresh</button>
   </div>
 
+  
+  <div class="favor-container">
+  
+      <div *ngIf="facilities.length === 0">
+        Keine Fahrstühle bekannt.
+        <span *ngIf="station.hasSteplessAccess==='yes'">Der Bahnhof ist ohne Treppen erreichbar.</span>
+        <span *ngIf="station.hasSteplessAccess!=='yes'">Der Bahnhof ist nicht ohne Treppen erreichbar.</span>
+      </div>
+      
+      <div *ngIf="facilities.length > 0">
+          <div *ngFor="let facility of facilities | favorFilter:station.favorFacilities"  class="details-item" [ngClass]="facility.state==='ACTIVE'?'details-item--ok':'details-item--fck'">
+              <span *ngIf="facility.type==='ESCALATOR'">Rolltreppe</span>
+              <span *ngIf="facility.type==='ELEVATOR'">Fahrstuhl</span>
+              {{facility.description}}
+            </div>          
+      </div>
+
+      <button (click)="onToggleDetailsVisible()" *ngIf="facilities.length>0">Details</button>
+  </div>
+  
+
+  <div class="details-container" [hidden]="!detailsVisible">
+    <div *ngFor="let facility of facilities" class="details-item" [ngClass]="facility.state==='ACTIVE'?'details-item--ok':'details-item--fck'">
+      <span *ngIf="facility.type==='ESCALATOR'">Rolltreppe</span>
+      <span *ngIf="facility.type==='ELEVATOR'">Fahrstuhl</span>
+      {{facility.description}}
+      <button 
+        class="favor-button" 
+        [ngClass]="station.favorFacilities.indexOf(facility.id) > -1 ? 'favor-button--selected' : ''"
+        (click)="onFavorFacilityClicked(facility.id)">&#9733;</button>
+    </div>
+  </div>
 
 </div>

@@ -1,13 +1,13 @@
 <div *ngIf="way">
-  <p>
-    {{way.id}} {{way.title}}
-  </p>
+  <h1 class="main-headline">{{way.title}}</h1>
 
   <stt-station 
-    *ngFor="let station of way.stations" 
+    *ngFor="let station of way.stations"
+    (favor)="onFavorClicked($event)"
     [station]="station" 
-    [edit]="false"></stt-station>
+    [edit]="false"
+    ></stt-station>
 
-  <a [routerLink]="['/meine-routen', 'details', way.id, 'bearbeiten']">Bearbeiten</a>
-  <a [routerLink]="['/meine-routen']">Zur Übersicht</a>
+  <a class="button button--large" [routerLink]="['/meine-routen', 'details', way.id, 'bearbeiten']">Bearbeiten</a>
+  <a class="button button--large" [routerLink]="['/meine-routen']">Zur Übersicht</a>
 </div>

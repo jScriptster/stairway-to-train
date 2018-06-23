@@ -1,0 +1,17 @@
+@import 'colors';
+
+.button {
+    background-color: transparent;
+    color: $rc-color-alert-message-primary;
+    border: 1px solid $rc-color-alert-message-primary;
+    background-color: $color-darkest;
+    padding: 10px 15px;
+    text-align: center;
+    display: block;
+    text-decoration: none;
+}
+
+.button--large {
+    width: 100%;
+    margin-bottom: 20px;
+}

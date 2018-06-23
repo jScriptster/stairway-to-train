@@ -15,11 +15,13 @@ export class StationComponent implements OnInit, OnDestroy {
   @Input() station:Station;
   @Input() edit:boolean = false;
   @Output() remove:EventEmitter<Station> = new EventEmitter<Station>();
+  @Output() favor:EventEmitter<Object> = new EventEmitter<Object>();
 
   private subscription: ISubscription;
   private facilities:Facility[];
+  private detailsVisible:boolean = false;
 
-  constructor(private faStaService:FaStaService) { }
+  constructor(private faStaService:FaStaService) {}
 
   ngOnInit() {
     const facilitiesObservable = this.faStaService.getFacilitiesByStation(this.station.id);
@@ -42,6 +44,17 @@ export class StationComponent implements OnInit, OnDestroy {
 
   onRefreshClicked() {
     this.faStaService.fetch(this.station.id, true);
+  }
+
+  onFavorFacilityClicked(id:string) {
+    this.favor.emit({
+      stationId: this.station.id,
+      facilityId: id
+    });
+  }
+
+  onToggleDetailsVisible() {
+    this.detailsVisible = !this.detailsVisible;
   }
 
 }

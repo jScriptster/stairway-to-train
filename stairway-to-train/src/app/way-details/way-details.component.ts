@@ -36,4 +36,8 @@ export class WayDetailsComponent implements OnInit, OnDestroy {
     this.way = this.wayService.getWayById(wayId);   
   }
 
+  onFavorClicked(data) {
+    this.wayService.toggleFacilityFavor(this.way.id, data.stationId, data.facilityId)
+  }
+
 }

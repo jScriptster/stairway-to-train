@@ -1,2 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
 
+@import 'style/colors';
+@import 'style/button';
+
+html {
+    box-sizing: border-box;
+}
+
+*, ::before, ::after {
+    box-sizing: inherit;
+}
+
+body {
+    background-color: $color-dark;
+    color: $color-white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0px;
+}
+
+.main-headline {
+    border-top: 1px solid $color-white;
+    border-bottom: 1px solid $color-white;
+}
