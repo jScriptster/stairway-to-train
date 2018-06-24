@@ -1,6 +1,7 @@
-<div *ngIf="edit">
-  <strong>{{station.name}}</strong>
-  <button (click)="onRemoveClicked()">Entfernen</button>
+<div *ngIf="edit" class="station-edit">
+  <span class="federal-state">{{station.federalState}}</span>
+  <strong class="station-name">{{station.name}}</strong>
+  <button (click)="onRemoveClicked()" class="refresh-button">Entfernen</button>
 </div>
 
 
@@ -33,7 +34,7 @@
   </div>
   
 
-  <div class="details-container" [hidden]="!detailsVisible">
+  <div class="details-container" *ngIf="detailsVisible">
     <div *ngFor="let facility of facilities" class="details-item" [ngClass]="facility.state==='ACTIVE'?'details-item--ok':'details-item--fck'">
       <span *ngIf="facility.type==='ESCALATOR'">Rolltreppe</span>
       <span *ngIf="facility.type==='ELEVATOR'">Fahrstuhl</span>

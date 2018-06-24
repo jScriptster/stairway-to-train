@@ -1,19 +1,19 @@
 <div *ngIf="way">
-  <h1>{{way.id}}</h1>
+  
+  <input [(ngModel)]="way.title" (change)="onTitleChanged()" placeholder="Titel">
 
-  <input [(ngModel)]="way.title" (change)="onTitleChanged()">
+  <div class="stations">
+    <stt-station 
+      *ngFor="let station of way.stations" 
+      [station]="station" 
+      [edit]="true"
+      (remove)="onRemoveStationClicked($event)"></stt-station>
+  </div>
 
-  <stt-station 
-    *ngFor="let station of way.stations" 
-    [station]="station" 
-    [edit]="true"
-    (remove)="onRemoveStationClicked($event)"></stt-station>
 
-  <button (click)="onAddStationClicked()">Station hinzufügen</button>
-
-  <button (click)="onKillWayClicked()">Route "{{way.title}}" löschen</button>
-
-  <a [routerLink]="['/meine-routen', 'details', way.id]">Fertig</a>
+  <button (click)="onAddStationClicked()" class="button button--large">Station hinzufügen</button>
+  <a [routerLink]="['/meine-routen', 'details', way.id]" class="button button--large">Fertig</a>
+  <button (click)="onKillWayClicked()" class="button">Route "{{way.title}}" löschen</button>
 
   <stt-station-search 
     *ngIf="isStationSerach" 

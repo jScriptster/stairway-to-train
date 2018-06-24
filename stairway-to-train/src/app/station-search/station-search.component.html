@@ -1,11 +1,11 @@
-<div>
-  <input type="search" (input)="onInput($event.target.value)" />
+<div class="search-popover">
+  <input type="search" (input)="onInput($event.target.value)" placeholder="Bahnhof" />
 
-  <ul>
-    <li *ngFor="let station of stationsSuggest" (click)='onStationSelected(station)'>
+  <ul class="stations">
+    <li class="station" *ngFor="let station of stationsSuggest" (click)='onStationSelected(station)'>
       {{station.name}}
     </li>
   </ul>
 
-  <button (click)="onCancelClick()">Abbrechen</button>
+  <button (click)="onCancelClick()" class="button button--large">Abbrechen</button>
 </div>
