@@ -1,7 +1,7 @@
 <div *ngIf="edit" class="station-edit">
   <span class="federal-state">{{station.federalState}}</span>
   <strong class="station-name">{{station.name}}</strong>
-  <button (click)="onRemoveClicked()" class="refresh-button">Entfernen</button>
+  <button (click)="onRemoveClicked()" class="remove-button icon-button icon-button--xs icon-icon_garbage"></button>
 </div>
 
 
@@ -10,7 +10,7 @@
   <div class="header" [ngClass]="facilities | facilityOutOfOrderAlarm:station.hasSteplessAccess:'header--ok':'header--alarm'">    
     <span class="federal-state">{{station.federalState}}</span>
     <strong class="station-name">{{station.name}}</strong>
-    <button class="refresh-button" (click)="onRefreshClicked()">Refresh</button>
+    <button class="refresh-button icon-refresh" (click)="onRefreshClicked()"></button>
   </div>
 
   
@@ -23,9 +23,9 @@
       </div>
       
       <div *ngIf="facilities.length > 0">
-          <div *ngFor="let facility of facilities | favorFilter:station.favorFacilities"  class="details-item" [ngClass]="facility.state==='ACTIVE'?'details-item--ok':'details-item--fck'">
-              <span *ngIf="facility.type==='ESCALATOR'">Rolltreppe</span>
-              <span *ngIf="facility.type==='ELEVATOR'">Fahrstuhl</span>
+          <div *ngFor="let facility of facilities | favorFilter:station.favorFacilities"  class="details-item details-item--favor" [ngClass]="facility.state==='ACTIVE'?'details-item--ok':'details-item--fck'">
+              <span *ngIf="facility.type==='ESCALATOR'"><span class="details-item__icon icon-icon_escalator"></span></span>
+              <span *ngIf="facility.type==='ELEVATOR'"><span class="details-item__icon icon-icon_elevator"></span></span>
               {{facility.description}}
             </div>          
       </div>
@@ -35,9 +35,12 @@
   
 
   <div class="details-container" *ngIf="detailsVisible">
-    <div *ngFor="let facility of facilities" class="details-item" [ngClass]="facility.state==='ACTIVE'?'details-item--ok':'details-item--fck'">
-      <span *ngIf="facility.type==='ESCALATOR'">Rolltreppe</span>
-      <span *ngIf="facility.type==='ELEVATOR'">Fahrstuhl</span>
+    <div *ngFor="let facility of facilities" 
+        class="details-item" 
+        [ngClass]="[facility.state==='ACTIVE'?'details-item--ok':'details-item--fck', station.favorFacilities.indexOf(facility.id) > -1 ? 'details-item--favor' : '']"
+        >
+      <span *ngIf="facility.type==='ESCALATOR'"><span class="details-item__icon icon-icon_escalator"></span>Rolltreppe</span>
+      <span *ngIf="facility.type==='ELEVATOR'"><span class="details-item__icon icon-icon_elevator"></span>Fahrstuhl</span>
       {{facility.description}}
       <button 
         class="favor-button" 

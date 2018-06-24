@@ -11,9 +11,9 @@
   </div>
 
 
-  <button (click)="onAddStationClicked()" class="button button--large">Station hinzufügen</button>
-  <a [routerLink]="['/meine-routen', 'details', way.id]" class="button button--large">Fertig</a>
-  <button (click)="onKillWayClicked()" class="button">Route "{{way.title}}" löschen</button>
+  <button (click)="onAddStationClicked()" class="icon-button icon-icon_add"></button>
+  <a [routerLink]="['/meine-routen', 'details', way.id]" class="icon-button icon-icon_check"></a>
+  <button (click)="onKillWayClicked()" class="icon-button icon-icon_garbage"></button>
 
   <stt-station-search 
     *ngIf="isStationSerach" 

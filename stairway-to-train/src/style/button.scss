@@ -15,3 +15,32 @@
     width: 100%;
     margin-bottom: 20px;
 }
+
+.icon-button {
+    background-color: $rc-color-alert-light;
+    font-size: 50px;
+    border: none;
+    border-radius: 50%;
+    padding: 5px;
+    color: $color-black;
+    box-shadow: 0 0 7px 1px $color-black;
+    text-decoration: none;
+}
+
+.icon-button--back {
+    font-size: 30px;
+    padding: 6px;
+    position: absolute;
+    top: 0;
+    left: 20px;
+}
+
+.icon-button--s {
+    font-size: 40px;
+    padding: 4px;
+}
+
+.icon-button--xs {
+    font-size: 30px;
+    padding: 3px;
+}

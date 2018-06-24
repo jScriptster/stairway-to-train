@@ -3,6 +3,7 @@
 .ways {
     list-style-type: none;
     padding: 0;
+    margin-bottom: 80px;
 }
 
 .way {
@@ -27,4 +28,10 @@ a {
 .way__description {
     color: $color-white;
     text-decoration: none;
+}
+
+.new-way-button {
+    position: fixed;
+    right: 15px;
+    bottom: 15px;
 }

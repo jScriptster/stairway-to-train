@@ -1,5 +1,5 @@
 <div *ngIf="way">
-  <h1 class="main-headline">{{way.title}}</h1>
+  <h1 class="main-headline">{{way.title || 'Unbenannt'}}</h1>
 
   <stt-station 
     *ngFor="let station of way.stations"
@@ -8,6 +8,6 @@
     [edit]="false"
     ></stt-station>
 
-  <a class="button button--large" [routerLink]="['/meine-routen', 'details', way.id, 'bearbeiten']">Bearbeiten</a>
-  <a class="button button--large" [routerLink]="['/meine-routen']">Zur Übersicht</a>
+  <a class="icon-button icon-icon_edit" [routerLink]="['/meine-routen', 'details', way.id, 'bearbeiten']"></a>
+  <a class="icon-button icon-button--back icon-icon_back" [routerLink]="['/meine-routen']"></a>
 </div>

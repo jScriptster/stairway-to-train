@@ -15,11 +15,11 @@
         width: 25px;
         top: 8px;
         left: 5px;
-        background-color: $color-darkest;
+        background-color: $color-dark-medium;
         border-radius: 50%;
         display: block;
         position: absolute;
-        border: 3px solid $color-dark-medium;
+        border: 6px solid $color-darkest;
     }
 }
 
@@ -47,21 +47,28 @@
 
 .refresh-button {
     background-color: transparent;
-    color: $color-white;
-    border: 1px solid $color-white;
+    border: none;
     padding: 2px;
-    font-size: 11px;
+    font-size: 15px;
     position: absolute;
     bottom: 5px;
     right: 0;
+    color: $color-white;
+    border-radius: 50%;
+}
+
+.remove-button {
+    position: absolute;
+    bottom: 8px;
+    right: 2px; 
 }
 
 .details-container {
-    padding: 0 0 0 40px;
+    padding: 0 0 0 69px;
 }
 
 .favor-container {
-    padding: 0 0 0 40px;  
+    padding: 0 0 0 69px;  
 }
 
 .favor-button {
@@ -77,21 +84,34 @@
 }
 
 .details-item {
-    padding-left: 20px;
+    padding: 2px 5px 3px 5px;
+    border-bottom: 1px solid $color-darkest;
     position: relative;
     margin-bottom: 5px;
     &:after {
         content: '';
         height: 12px;
         width: 12px;
-        top: 10px;
-        left: 1px;
+        top: 14px;
+        left: -16px;
         background-color: $color-darkest;
         border-radius: 50%;
         display: block;
         position: absolute;
         border: 2px solid $color-dark-medium;        
     }
+}
+
+.details-item--favor {
+    background-color: $color-darkest;
+}
+
+.details-item__icon {
+    position: absolute;
+    font-size: 25px;
+    color: $color-black;
+    left: -30px;
+    top: 3px;
 }
 
 .details-item--ok:after {
