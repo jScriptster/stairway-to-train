@@ -7,7 +7,7 @@
 
 <div *ngIf="!edit" class="container">
   
-  <div class="header" [ngClass]="facilities | facilityOutOfOrderAlarm:station.hasSteplessAccess:'header--ok':'header--alarm'">    
+  <div class="header header--sticky" [ngClass]="facilities | facilityOutOfOrderAlarm:station.hasSteplessAccess:'header--ok':'header--alarm'">    
     <span class="federal-state">{{station.federalState}}</span>
     <strong class="station-name">{{station.name}}</strong>
     <button class="refresh-button icon-refresh" (click)="onRefreshClicked()"></button>
@@ -23,14 +23,16 @@
       </div>
       
       <div *ngIf="facilities.length > 0">
-          <div *ngFor="let facility of facilities | favorFilter:station.favorFacilities"  class="details-item details-item--favor" [ngClass]="facility.state==='ACTIVE'?'details-item--ok':'details-item--fck'">
-              <span *ngIf="facility.type==='ESCALATOR'"><span class="details-item__icon icon-icon_escalator"></span></span>
-              <span *ngIf="facility.type==='ELEVATOR'"><span class="details-item__icon icon-icon_elevator"></span></span>
+          <div *ngFor="let facility of facilities | favorFilter:station.favorFacilities"  class="favor-item" [ngClass]="facility.state==='ACTIVE'?'details-item--ok':'details-item--fck'">
+              <span *ngIf="facility.type==='ESCALATOR'"><span class="favor-item__icon icon-icon_escalator"></span></span>
+              <span *ngIf="facility.type==='ELEVATOR'"><span class="favor-item__icon icon-icon_elevator"></span></span>
               {{facility.description}}
             </div>          
       </div>
 
-      <button (click)="onToggleDetailsVisible()" *ngIf="facilities.length>0">Details</button>
+      <div class="details-button-container" *ngIf="facilities.length>0"> 
+        <button (click)="onToggleDetailsVisible()" class="details-button">zeige alle</button>
+      </div>
   </div>
   
 
@@ -39,8 +41,8 @@
         class="details-item" 
         [ngClass]="[facility.state==='ACTIVE'?'details-item--ok':'details-item--fck', station.favorFacilities.indexOf(facility.id) > -1 ? 'details-item--favor' : '']"
         >
-      <span *ngIf="facility.type==='ESCALATOR'"><span class="details-item__icon icon-icon_escalator"></span>Rolltreppe</span>
-      <span *ngIf="facility.type==='ELEVATOR'"><span class="details-item__icon icon-icon_elevator"></span>Fahrstuhl</span>
+      <span *ngIf="facility.type==='ESCALATOR'" class="details-item__icon icon-icon_escalator"></span>
+      <span *ngIf="facility.type==='ELEVATOR'" class="details-item__icon icon-icon_elevator"></span>
       {{facility.description}}
       <button 
         class="favor-button" 
