@@ -24,6 +24,7 @@ import { StationComponent } from './station/station.component';
 import { StationPreviewPipe } from './shared/pipes/station-preview.pipe';
 import { FacilityOutOfOrderAlarmPipe } from './shared/pipes/facility-out-of-order-alarm.pipe';
 import { FavorFilterPipe } from './shared/pipes/favor-filter.pipe';
+import { FacilityComponent } from './facility/facility.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { FavorFilterPipe } from './shared/pipes/favor-filter.pipe';
     StationComponent,
     StationPreviewPipe,
     FacilityOutOfOrderAlarmPipe,
-    FavorFilterPipe
+    FavorFilterPipe,
+    FacilityComponent
   ],
   imports: [
     BrowserModule,

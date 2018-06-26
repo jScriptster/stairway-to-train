@@ -1,6 +1,6 @@
-<div *ngIf="edit" class="station-edit">
-  <span class="federal-state">{{station.federalState}}</span>
-  <strong class="station-name">{{station.name}}</strong>
+<div *ngIf="edit" class="container container--edit">
+  <span class="federal-state federal-state--edit">{{station.federalState}}</span>
+  <strong class="station-name station-name--edit">{{station.name}}</strong>
   <button (click)="onRemoveClicked()" class="remove-button icon-button icon-button--xs icon-icon_garbage"></button>
 </div>
 
@@ -13,42 +13,37 @@
     <button class="refresh-button icon-refresh" (click)="onRefreshClicked()"></button>
   </div>
 
+  <div class="facilities-container" *ngIf="facilities">
   
-  <div class="favor-container">
-  
-      <div *ngIf="facilities.length === 0">
-        Keine Fahrstühle bekannt.
-        <span *ngIf="station.hasSteplessAccess==='yes'">Der Bahnhof ist ohne Treppen erreichbar.</span>
-        <span *ngIf="station.hasSteplessAccess!=='yes'">Der Bahnhof ist nicht ohne Treppen erreichbar.</span>
-      </div>
-      
-      <div *ngIf="facilities.length > 0">
-          <div *ngFor="let facility of facilities | favorFilter:station.favorFacilities"  class="favor-item" [ngClass]="facility.state==='ACTIVE'?'details-item--ok':'details-item--fck'">
-              <span *ngIf="facility.type==='ESCALATOR'"><span class="favor-item__icon icon-icon_escalator"></span></span>
-              <span *ngIf="facility.type==='ELEVATOR'"><span class="favor-item__icon icon-icon_elevator"></span></span>
-              {{facility.description}}
-            </div>          
-      </div>
-
-      <div class="details-button-container" *ngIf="facilities.length>0"> 
-        <button (click)="onToggleDetailsVisible()" class="details-button">zeige alle</button>
-      </div>
-  </div>
-  
-
-  <div class="details-container" *ngIf="detailsVisible">
-    <div *ngFor="let facility of facilities" 
-        class="details-item" 
-        [ngClass]="[facility.state==='ACTIVE'?'details-item--ok':'details-item--fck', station.favorFacilities.indexOf(facility.id) > -1 ? 'details-item--favor' : '']"
-        >
-      <span *ngIf="facility.type==='ESCALATOR'" class="details-item__icon icon-icon_escalator"></span>
-      <span *ngIf="facility.type==='ELEVATOR'" class="details-item__icon icon-icon_elevator"></span>
-      {{facility.description}}
-      <button 
-        class="favor-button" 
-        [ngClass]="station.favorFacilities.indexOf(facility.id) > -1 ? 'favor-button--selected' : ''"
-        (click)="onFavorFacilityClicked(facility.id)">&#9733;</button>
+    <div *ngIf="facilities.length === 0">
+      Keine Fahrstühle bekannt.
+      <span *ngIf="station.hasSteplessAccess==='yes'">Der Bahnhof ist ohne Treppen erreichbar.</span>
+      <span *ngIf="station.hasSteplessAccess!=='yes'">Der Bahnhof ist nicht ohne Treppen erreichbar.</span>
     </div>
-  </div>
+    
+    <div *ngIf="facilities.length > 0">
+        <stt-facility
+          *ngFor="let facility of facilities | favorFilter:station.favorFacilities"
+          [facility]="facility"
+          [isPreview]="true"></stt-facility>
+        <div class="nothing-to-preview">Läuft.</div>
+    </div>
+
+    <div class="details-button-container" *ngIf="facilities.length > 0"> 
+      <button (click)="onToggleDetailsVisible()" 
+              class="details-button" 
+              [ngClass]="detailsVisible ? 'details-button--selected' : ''">alle ({{facilities.length}})</button>
+    </div>
+
+</div>
+
+
+<div class="facilities-container facilities-container--details" *ngIf="detailsVisible">
+  <stt-facility 
+    *ngFor="let facility of facilities" 
+    [facility]="facility" 
+    [favorFacilities]="station.favorFacilities"
+    (favor)="onFavorFacilityClicked($event)"></stt-facility>
+</div>
 
 </div>

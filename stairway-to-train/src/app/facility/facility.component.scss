@@ -1,0 +1,76 @@
+@import '../../style/colors';
+
+.item {
+    padding: 10px 30px 10px 5px;
+    border-bottom: 1px solid $color-darkest;
+    position: relative;
+    &:after {
+        content: '';
+        height: 12px;
+        width: 12px;
+        top: 23px;
+        left: -21px;
+        background-color: $color-darkest;
+        border-radius: 50%;
+        display: block;
+        position: absolute;
+        border: 2px solid $color-dark-medium;        
+    }
+}
+
+.item--favor {
+    box-shadow: 0px 0px 11px 1px $color-darkest inset;
+}
+
+.item__icon {
+    position: absolute;
+    font-size: 25px;
+    color: $color-black;
+    left: -35px;
+    top: 9px;
+}
+
+.item--ok:after {
+    background-color: $rc-color-alert-message-secondary;
+}
+
+.item--fck:after {
+    background-color: $rc-color-alert-message-warning;
+}
+
+.favor-button {
+    background-color: transparent;
+    font-size: 22px;
+    border: none;
+    padding: 0;
+    color: $color-white;
+    position: absolute;
+    right: 8px;
+    top: 4px;
+
+    &:hover,
+    &--selected {
+        color: $rc-color-alert-light;
+    }
+}
+
+.item--preview {
+    padding: 2px 5px 3px 5px;
+    border: none;
+    margin-bottom: 5px;
+    &:after {
+        content: '';
+        height: 12px;
+        width: 12px;
+        top: 14px;
+        left: -21px;      
+    }
+    
+    .item__icon {
+        position: absolute;
+        font-size: 25px;
+        color: $color-black;
+        left: -35px;
+        top: 3px;
+    }   
+}

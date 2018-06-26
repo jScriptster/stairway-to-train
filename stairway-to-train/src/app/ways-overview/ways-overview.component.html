@@ -13,6 +13,13 @@
     </li>
   </ul>
 
-  <button class="icon-button icon-icon_add new-way-button" (click)="onClickNewButton($event)"></button>
+  <div *ngIf="ways.length === 0" class="nothing-to-see-here-notice">
+    Keine Routen vorhanden.<br /> 
+    Um eine neue Route anzulegen nutze den <span class="icon-icon_add nothing-to-see-here-notice__icon"></span> Button. 
+  </div>
+
+  <div class="bbar">
+      <button class="icon-button icon-icon_add icon-button--main-bbar" (click)="onClickNewButton($event)"></button>
+  </div>
 
 </div>

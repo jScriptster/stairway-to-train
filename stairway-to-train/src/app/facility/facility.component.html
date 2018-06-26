@@ -1,0 +1,12 @@
+<div class="item" 
+     [ngClass]="[facility.state==='ACTIVE'?'item--ok':'item--fck', isFavor ? 'item--favor' : '', isPreview ? 'item--preview' : '']"
+      >
+      <span *ngIf="facility.type==='ESCALATOR'" class="item__icon icon-icon_escalator"></span>
+      <span *ngIf="facility.type==='ELEVATOR'" class="item__icon icon-icon_elevator"></span>
+      {{facility.description || '(weitere Infos fehlen)'}}
+      <button 
+        *ngIf="!isPreview"
+        class="favor-button" 
+        [ngClass]="isFavor ? 'favor-button--selected' : ''"
+        (click)="onFavorFacilityClicked(facility.id)">&#9733;</button>
+</div>

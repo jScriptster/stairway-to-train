@@ -40,3 +40,27 @@ input {
     margin: 20px 0;
     color: $color-dark;
 }
+
+.bbar {
+    position: fixed;
+    left: 50%;
+    bottom: 0;
+    width: 100%;
+    max-width: 550px;
+    transform: translate(-50%, 0);
+    height: 1px;
+}
+
+.nothing-to-see-here-notice {
+    color: $color-darkest;
+    padding: 5px;
+    text-shadow: 1px  1px 0px $color-dark-medium;
+    font-weight: bold;
+    font-size: 20px;
+    &__icon {
+        position: relative;
+        top: 5px;
+        left: 0px;
+        font-size: 25px;
+    }
+}

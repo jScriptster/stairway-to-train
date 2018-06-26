@@ -10,10 +10,19 @@
       (remove)="onRemoveStationClicked($event)"></stt-station>
   </div>
 
+  <div *ngIf="way.stations.length === 0" class="nothing-to-see-here-notice">
+      Keine Stationen vorhanden.<br /> 
+      Um Stationen hinzuzufügen, nutze den <span class="icon-icon_add nothing-to-see-here-notice__icon"></span> Button.
+  </div>
+
 
   <button (click)="onAddStationClicked()" class="icon-button icon-icon_add"></button>
-  <a [routerLink]="['/meine-routen', 'details', way.id]" class="icon-button icon-icon_check"></a>
+
   <button (click)="onKillWayClicked()" class="icon-button icon-icon_garbage"></button>
+
+  <div class="bbar">
+      <a [routerLink]="['/meine-routen', 'details', way.id]" class="icon-button icon-button--main-bbar icon-icon_check"></a>
+  </div>
 
   <stt-station-search 
     *ngIf="isStationSerach" 

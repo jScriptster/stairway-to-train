@@ -8,6 +8,17 @@
     [edit]="false"
     ></stt-station>
 
-  <a class="icon-button icon-icon_edit" [routerLink]="['/meine-routen', 'details', way.id, 'bearbeiten']"></a>
+
   <a class="icon-button icon-button--back icon-icon_back" [routerLink]="['/meine-routen']"></a>
+
+  <div *ngIf="way.stations.length === 0" class="nothing-to-see-here-notice">
+      Keine Stationen vorhanden.<br /> 
+      Um Stationen hinzuzufügen, gehe mit dem <span class="icon-icon_edit nothing-to-see-here-notice__icon"></span> Button in 
+      den Bearbeiten-Modus. 
+  </div>
+
+  <div class="bbar">
+      <a class="icon-button icon-button--main-bbar icon-icon_edit" [routerLink]="['/meine-routen', 'details', way.id, 'bearbeiten']"></a>
+  </div>
+
 </div>
