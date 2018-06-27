@@ -20,7 +20,6 @@ export class StationComponent implements OnInit, OnDestroy {
   private subscription: ISubscription;
   private facilities:Facility[];
   private detailsVisible:boolean = false;
-  private a;
 
   constructor(private faStaService:FaStaService) {}
 

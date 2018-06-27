@@ -25,6 +25,7 @@
     color: $color-black;
     box-shadow: 0 0 7px 1px $color-black;
     text-decoration: none;
+    z-index: 2;
 }
 
 .icon-button--main-bbar {
@@ -37,8 +38,20 @@
     font-size: 30px;
     padding: 6px;
     position: absolute;
-    top: 0;
+    top: 5px;
     left: 20px;
+}
+
+.icon-button--delete-way {
+    position: absolute;
+    top: 2px;
+    right: 15px;
+}
+
+.icon-button--add-station {
+    position: absolute;
+    bottom: 18px;
+    right: 90px;
 }
 
 .icon-button--s {

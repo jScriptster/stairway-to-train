@@ -1,3 +1,7 @@
+<div class="tbar">
+    <button (click)="onKillWayClicked()" class="icon-button icon-button--s icon-button--delete-way icon-icon_garbage"></button>
+  </div>
+
 <div *ngIf="way">
   
   <input [(ngModel)]="way.title" (change)="onTitleChanged()" placeholder="Titel">
@@ -15,13 +19,9 @@
       Um Stationen hinzuzufügen, nutze den <span class="icon-icon_add nothing-to-see-here-notice__icon"></span> Button.
   </div>
 
-
-  <button (click)="onAddStationClicked()" class="icon-button icon-icon_add"></button>
-
-  <button (click)="onKillWayClicked()" class="icon-button icon-icon_garbage"></button>
-
   <div class="bbar">
       <a [routerLink]="['/meine-routen', 'details', way.id]" class="icon-button icon-button--main-bbar icon-icon_check"></a>
+      <button (click)="onAddStationClicked()" class="icon-button icon-button--add-station icon-button--s icon-icon_add"></button>
   </div>
 
   <stt-station-search 

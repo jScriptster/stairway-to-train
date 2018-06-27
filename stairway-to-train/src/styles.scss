@@ -49,6 +49,19 @@ input {
     max-width: 550px;
     transform: translate(-50%, 0);
     height: 1px;
+    z-index: 2;
+}
+
+.tbar {
+    position: fixed;
+    left: 50%;
+    top: 0;
+    width: 100%;
+    max-width: 550px;
+    transform: translate(-50%, 0);
+    height: 55px;
+    background-color: $color-darkest; 
+    z-index: 3;
 }
 
 .nothing-to-see-here-notice {

@@ -38,7 +38,7 @@
 
 .header--sticky {
     position: sticky;
-    top: 0px;
+    top: 55px;
     background-color: $color-dark;
     z-index: 2;
 }
@@ -73,9 +73,9 @@
     right: 2px;
     color: $color-white;
     border-radius: 50%;
-    &:hover {
-        color: $rc-color-alert-light;
-    }
+    //&:hover {
+    //    color: $rc-color-alert-light;
+    //}
 }
 
 .remove-button {
@@ -109,7 +109,7 @@
     right: 5px;
     bottom: 0px;
 
-    &:hover,
+    //&:hover,
     &--selected {
         background-color: $rc-color-alert-light;
     } 
